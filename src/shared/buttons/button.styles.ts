@@ -13,5 +13,5 @@ export const ButtonLogin = styled.button`
   font-size: 1.4rem;
   font-weight: 600;
   cursor: pointer;
-  margin-bottom: 50px;
+  margin-bottom: 5%;
 `;

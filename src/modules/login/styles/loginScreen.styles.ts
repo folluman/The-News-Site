@@ -19,7 +19,7 @@ export const Body = styled.div`
 
 export const Login = styled.div`
   background-color: white;
-  height: 70vh;
+  height: 80vh;
   width: 70vh;
   background-color: ${colorBackgroundLogin};
   text-align: center;

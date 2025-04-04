@@ -85,3 +85,9 @@ export const LinkStyle = styled.div`
 export const InputDiv = styled.div`
   height: auto;
 `;
+
+export const ErrorText = styled.div`
+  color: red;
+  margin-bottom: 15px;
+  text-align: center;
+`;

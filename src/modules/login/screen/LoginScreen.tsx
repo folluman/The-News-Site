@@ -1,4 +1,4 @@
-import { Body, Login, Logo, PasswordForgot } from "../styles/loginScreen.styles";
+import { Body, Login, Logo } from "../styles/loginScreen.styles";
 import LogoImg from "../../../assets/logo.png";
 import Input from "../../../shared/inputs/input";
 

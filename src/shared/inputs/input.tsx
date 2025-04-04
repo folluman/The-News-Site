@@ -1,9 +1,9 @@
-import { InputDiv, InputStyle, LinkStyle } from "./input.styles";
+import { InputDiv, InputStyle, LinkStyle, ErrorText } from "./input.styles";
 import userIcon from "../../assets/userIcon.png";
 import emailIcon from "../../assets/emailIcon.png";
 import passwordIcon from "../../assets/passwordIcon.png";
 import phoneIcon from "../../assets/phoneIcon.png";
-import { useState, useSyncExternalStore } from "react";
+import { useState } from "react";
 import { ButtonLogin } from "../buttons/button.styles";
 import {
   PasswordForgot,
@@ -11,52 +11,63 @@ import {
   PasswordForgotTxt,
   SignUpDiv,
 } from "../../modules/login/styles/loginScreen.styles";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
-type AppScreen = "loginScrean" | "signUpScrean";
+type AppScreen = "loginScreen" | "signUpScreen";
 
 interface LoginInput {
   placeholder: string;
   icon: string;
   password?: boolean;
   name?: string;
-  Change?: any;
+  onChange?: any;
 }
 
 function Input() {
-  const [viewLogin, setSignUpOrLogin] = useState<AppScreen>("loginScrean");
+  const [viewLogin, setSignUpOrLogin] = useState<AppScreen>("loginScreen");
 
   return (
     <>
       <LinkStyle>
         <a
-          onClick={() => setSignUpOrLogin("loginScrean")}
-          data-active={viewLogin === "loginScrean"}
+          onClick={() => setSignUpOrLogin("loginScreen")}
+          data-active={viewLogin === "loginScreen"}
         >
           Login
         </a>
         <a
-          onClick={() => setSignUpOrLogin("signUpScrean")}
-          data-active={viewLogin === "signUpScrean"}
+          onClick={() => setSignUpOrLogin("signUpScreen")}
+          data-active={viewLogin === "signUpScreen"}
         >
           Sign Up
         </a>
       </LinkStyle>
       <InputDiv>
-        {viewLogin === "loginScrean" ? (
-          <LoginScrean setSignUpOrLogin={setSignUpOrLogin} />
+        {viewLogin === "loginScreen" ? (
+          <LoginScreen setSignUpOrLogin={setSignUpOrLogin} />
         ) : (
-          <SignUpScrean />
+          <SignUpScreen />
         )}
       </InputDiv>
     </>
   );
 }
 
-interface LoginScreanProps {
+interface LoginScreenProps {
   setSignUpOrLogin: (screen: AppScreen) => void;
 }
 
-function LoginScrean({ setSignUpOrLogin }: LoginScreanProps) {
+function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const inputsLogin: LoginInput[] = [
     { placeholder: "Email address", icon: emailIcon, name: "email" },
     {
@@ -67,56 +78,162 @@ function LoginScrean({ setSignUpOrLogin }: LoginScreanProps) {
     },
   ];
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+
+    // Validação básica
+    if (!formData.email || !formData.password) {
+      setError("Please fill in all fields");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:3000/users/login", {
+        email: formData.email,
+        password: formData.password,
+      });
+
+      localStorage.setItem("authToken", response.data.token);
+
+      navigate('/home');
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        return setError(err.response?.data?.message || "Invalid credentials");
+      }
+      setError("Unknown error occurred");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const listInputsLogin = inputsLogin.map((input, index) => (
     <InputStyle
       key={index}
+      name={input.name}
       placeholder={input.placeholder}
       icon={input.icon}
       type={input.password ? "password" : "text"}
+      value={formData[input.name as keyof typeof formData]}
+      onChange={handleChange}
     />
   ));
 
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <InputDiv>{listInputsLogin}</InputDiv>
+
+      {error && <ErrorText>{error}</ErrorText>}
+
       <div>
-        <ButtonLogin>Login</ButtonLogin>
+        <ButtonLogin type="submit" disabled={loading}>
+          {loading ? "Loading..." : "Login"}
+        </ButtonLogin>
       </div>
+
       <PasswordForgot>
         <PasswordForgotTxt>Forgot Password?</PasswordForgotTxt>
       </PasswordForgot>
+
       <SignUpDiv>
         Don't have an account?{" "}
-        <SignUpTxt onClick={() => setSignUpOrLogin("signUpScrean")}>
+        <SignUpTxt onClick={() => setSignUpOrLogin("signUpScreen")}>
           Sign Up
         </SignUpTxt>
       </SignUpDiv>
-    </>
+    </form>
   );
 }
 
-function SignUpScrean() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+function SignUpScreen() {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    confirmPassword: "",
+    email: "",
+    phone: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords don't match!");
+      return;
+    }
+
+    try {
+      const response = await axios.post("http://localhost:3000/users/signup", {
+        username: formData.username,
+        password: formData.password,
+        email: formData.email,
+        phone: formData.phone,
+      });
+
+      alert(response.data.message);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return alert(
+          error.response?.data?.error ||
+            error.response?.data?.details?.[0]?.msg ||
+            "Signup failed!"
+        );
+      }
+      alert("An error occurred. Please try again.");
+    }
+  };
 
   const inputs: LoginInput[] = [
-    { placeholder: "Username", icon: userIcon, name: "username" },
+    {
+      placeholder: "Username",
+      icon: userIcon,
+      name: "username",
+      onChange: handleChange,
+    },
     {
       placeholder: "Password",
       icon: passwordIcon,
       password: true,
       name: "password",
+      onChange: handleChange,
     },
     {
       placeholder: "Confirm Password",
       icon: passwordIcon,
       password: true,
       name: "confirmPassword",
+      onChange: handleChange,
     },
-    { placeholder: "Email address", icon: emailIcon, name: "email" },
-    { placeholder: "Phone", icon: phoneIcon, name: "phone" },
+    {
+      placeholder: "Email address",
+      icon: emailIcon,
+      name: "email",
+      onChange: handleChange,
+    },
+    {
+      placeholder: "Phone",
+      icon: phoneIcon,
+      name: "phone",
+      onChange: handleChange,
+    },
   ];
 
   const listInputs = inputs.map((input, index) => (
@@ -125,14 +242,16 @@ function SignUpScrean() {
       placeholder={input.placeholder}
       icon={input.icon}
       type={input.password ? "password" : "text"}
+      name={input.name}
+      onChange={input.onChange}
     />
   ));
 
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <InputDiv>{listInputs}</InputDiv>
-      <ButtonLogin>Sign Up</ButtonLogin>
-    </>
+      <ButtonLogin type="submit">Sign Up</ButtonLogin>
+    </form>
   );
 }
 
