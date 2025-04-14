@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const borderColor = "#1E3440";
-const inputColor = "#112733";
+const inputColor = "#white";
 
 export const InputStyle = styled.input<{ icon: string }>`
   background-color: ${inputColor};
@@ -14,7 +14,7 @@ export const InputStyle = styled.input<{ icon: string }>`
   height: 5vh;
   border-radius: 10px;
   border: ${borderColor};
-  color: white;
+  color: black;
   margin-bottom: 5px;
   font-size: 1rem;
 
@@ -55,12 +55,10 @@ export const LinkStyle = styled.div`
       transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
     }
 
-    /* Estado ativo (linha permanente) */
     &[data-active="true"]::after {
       width: 100%;
     }
-
-    /* Animação no clique */
+   
     &:active::after {
       animation: rippleEffect 0.6s cubic-bezier(0.65, 0, 0.35, 1);
     }

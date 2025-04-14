@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 // Color backgrounds
-const colorBackground = "#122029";
-const colorBackgroundLogin = "#0D212E";
+const colorBackground = "#1a1a1a";
+const colorBackgroundLogin = "#171617";
 const colorForgotPassword = "#A9B3B0";
 const colorSignUpTxt = "#DDDEDE";
 
@@ -33,7 +33,7 @@ export const Logo = styled.img`
 
 export const PasswordForgot = styled.div`
   padding-bottom: 5%;
-  border-bottom: #033556 1px solid;
+  border-bottom: gray 1px solid;
   width: 50%;
   margin: auto;
 `;
