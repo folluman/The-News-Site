@@ -12,7 +12,7 @@ import {
   SignUpDiv,
 } from "../../modules/login/styles/loginScreen.styles";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 type AppScreen = "loginScreen" | "signUpScreen";
 
@@ -58,6 +58,8 @@ interface LoginScreenProps {
   setSignUpOrLogin: (screen: AppScreen) => void;
 }
 
+// LoginScreen component
+// This component handles the login functionality and form submission
 function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
   const navigate = useNavigate();
 
@@ -106,12 +108,12 @@ function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
 
       localStorage.setItem("authToken", response.data.token);
 
-      navigate('/home');
+      navigate("/");
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        return setError(err.response?.data?.message || "Invalid credentials");
+        return setError(err.response?.data?.message || "Login failed!");
       }
-      setError("Unknown error occurred");
+      setError("An unexpected error occurred.");
     } finally {
       setLoading(false);
     }
@@ -155,6 +157,8 @@ function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
   );
 }
 
+// SignUpScreen component
+// This component handles the sign-up functionality and form submission
 function SignUpScreen() {
   const [formData, setFormData] = useState({
     username: "",
@@ -163,6 +167,8 @@ function SignUpScreen() {
     email: "",
     phone: "",
   });
+
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -176,7 +182,7 @@ function SignUpScreen() {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords don't match!");
+      setError("Passwords do not match!");
       return;
     }
 
@@ -191,11 +197,7 @@ function SignUpScreen() {
       alert(response.data.message);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        return alert(
-          error.response?.data?.error ||
-            error.response?.data?.details?.[0]?.msg ||
-            "Signup failed!"
-        );
+        return alert(error.response?.data?.error || "Signup failed!");
       }
       alert("An error occurred. Please try again.");
     }
@@ -250,6 +252,7 @@ function SignUpScreen() {
   return (
     <form onSubmit={handleSubmit}>
       <InputDiv>{listInputs}</InputDiv>
+      {error && <ErrorText>{error}</ErrorText>}
       <ButtonLogin type="submit">Sign Up</ButtonLogin>
     </form>
   );
