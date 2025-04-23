@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 // Color backgrounds
-const colorBackground = "#1a1a1a";
+export const colorBackground = "#1a1a1a";
 const colorBackgroundLogin = "#171617";
 const colorForgotPassword = "#A9B3B0";
 const colorSignUpTxt = "#DDDEDE";

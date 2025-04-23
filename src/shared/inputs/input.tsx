@@ -194,10 +194,14 @@ function SignUpScreen() {
         phone: formData.phone,
       });
 
-      alert(response.data.message);
+      setError(response.data.message);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        return alert(error.response?.data?.error || "Signup failed!");
+        const apiError = error.response?.data;
+        if(apiError) {
+          setError(`This ${apiError.error}`);
+          return
+        }
       }
       alert("An error occurred. Please try again.");
     }

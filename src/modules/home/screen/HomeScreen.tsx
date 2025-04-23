@@ -1,7 +1,9 @@
+import { Body } from "../styles/homeStyle";
+
 function HomeScreen() {
   return (
     <>
-      <h1>Welcome Home</h1>
+      <Body></Body>
     </>
   );
 }
