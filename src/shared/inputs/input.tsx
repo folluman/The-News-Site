@@ -1,4 +1,10 @@
-import { InputDiv, InputStyle, LinkStyle, ErrorText } from "./input.styles";
+import {
+  InputDiv,
+  InputStyle,
+  LinkStyle,
+  ErrorText,
+  UserCreatedText,
+} from "./input.styles";
 import userIcon from "../../assets/userIcon.png";
 import emailIcon from "../../assets/emailIcon.png";
 import passwordIcon from "../../assets/passwordIcon.png";
@@ -170,6 +176,8 @@ function SignUpScreen() {
 
   const [error, setError] = useState("");
 
+  const [userCreated, setUserCreated] = useState("");
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -183,6 +191,7 @@ function SignUpScreen() {
 
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match!");
+      setUserCreated("");
       return;
     }
 
@@ -194,16 +203,19 @@ function SignUpScreen() {
         phone: formData.phone,
       });
 
-      setError(response.data.message);
+      setUserCreated(response.data.message);
+      setError("")
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const apiError = error.response?.data;
-        if(apiError) {
+        if (apiError) {
           setError(`This ${apiError.error}`);
-          return
+          setUserCreated("");
+          return;
         }
       }
-      alert("An error occurred. Please try again.");
+      setError("An error occurred. Please try again.");
+      setUserCreated("");
     }
   };
 
@@ -257,6 +269,7 @@ function SignUpScreen() {
     <form onSubmit={handleSubmit}>
       <InputDiv>{listInputs}</InputDiv>
       {error && <ErrorText>{error}</ErrorText>}
+      {userCreated && <UserCreatedText>{userCreated}</UserCreatedText>}
       <ButtonLogin type="submit">Sign Up</ButtonLogin>
     </form>
   );

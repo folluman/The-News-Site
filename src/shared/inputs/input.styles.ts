@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const borderColor = "#1E3440";
 const inputColor = "#white";
+const colorInputSearch = "#ACACAC";
 
 export const InputStyle = styled.input<{ icon: string }>`
   background-color: ${inputColor};
@@ -88,4 +89,31 @@ export const ErrorText = styled.div`
   color: red;
   margin-bottom: 15px;
   text-align: center;
+`;
+
+export const UserCreatedText = styled.div`
+  color: aqua;
+  margin-bottom: 15px;
+  text-align: center;
+`
+
+export const Input = styled.input<{icon: string}>`
+  background-color: ${colorInputSearch};
+  background-image: url(${(props) => props.icon});
+  width: 300px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-position: 6px center;
+  background-size: 24px;
+  color: white;
+  font-size: 1rem;
+  border-radius: 20px;
+  border: ${borderColor};
+  padding-left: 35px;
+
+  &::placeholder {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+  }
 `;
