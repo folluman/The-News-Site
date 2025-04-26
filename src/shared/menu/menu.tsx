@@ -6,6 +6,7 @@ function MenuProfile() {
     <>
       <ProfileContainer>
         <ProfileIcon src={IconProfile} />
+        Admin
       </ProfileContainer>
     </>
   );
