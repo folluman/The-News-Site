@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const borderColor = "#1E3440";
-const inputColor = "#white";
+export const inputColor = "#white";
 const colorInputSearch = "#ACACAC";
 
 export const InputStyle = styled.input<{ icon: string }>`
@@ -11,7 +11,7 @@ export const InputStyle = styled.input<{ icon: string }>`
   background-position: 6px center;
   background-size: 24px;
   padding-left: 35px;
-  width: 35vh;
+  width: 70vw;
   height: 5vh;
   border-radius: 10px;
   border: ${borderColor};
@@ -83,6 +83,13 @@ export const LinkStyle = styled.div`
 
 export const InputDiv = styled.div`
   height: auto;
+  @media (min-width: 360px) {
+    text-align: center;
+    
+    div {
+      margin-bottom: 20px;
+    }
+  }
 `;
 
 export const ErrorText = styled.div`

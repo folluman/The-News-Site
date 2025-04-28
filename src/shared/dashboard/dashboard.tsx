@@ -3,11 +3,17 @@ import {
   DashBoardStyled,
   IconDashBoard,
   TitleDashContainer,
-  PanelControlContainer
+  PanelControlContainer,
 } from "./dashboard.styles";
 import iconDashboard from "../../assets/iconDash.svg";
+import { useState } from "react";
+import CreateAdminOrAuthor from "../inputs/inputAdminOrAuthor";
+import ListUser from "../List/list";
+import CreateNews from "../createNews/createNews";
 
 function DashBoard() {
+  const [viewHome, setHome] = useState('createAuthor')
+
   return (
     <>
       <DashBoardContainer>
@@ -17,11 +23,12 @@ function DashBoard() {
             Control Panel
           </TitleDashContainer>
           <PanelControlContainer>
-            <a href="">Create new Author +</a>
-            <a href="">List User</a>
-            <a href="">Edit News</a>
+            <a onClick={() => setHome('createAuthor')}>New Admin or Author</a>
+            <a onClick={() => setHome('listUser')}>List User</a>
+            <a onClick={() => setHome('createNews')}>Create News</a>
           </PanelControlContainer>
         </DashBoardStyled>
+        <div style={{color: 'white',}}>{viewHome === 'createAuthor' ? (<CreateAdminOrAuthor/>) : viewHome === 'listUser' ? (<ListUser/>) : (<CreateNews/>)}</div>
       </DashBoardContainer>
     </>
   );

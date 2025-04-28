@@ -5,7 +5,7 @@ const backgroundColorDashboard = '#262625'
 export const DashBoardContainer = styled.div`
   width: 100%;
   max-width: 320px;
-  margin: 80px auto 0 auto;
+  margin: 25% auto 0 auto;
 `;
 
 export const DashBoardStyled = styled.div`

@@ -12,11 +12,13 @@ import MenuProfile from "../../../shared/menu/menu";
 import HamburgerIcon from "../../../assets/menuCategory.svg";
 import DashBoard from "../../../shared/dashboard/dashboard";
 
+
 function HomeScreen() {
   return (
     <>
       <Body>
         <Conteiner>
+          {/* Container Header */}
           <ConteinerHeader>
             <MenuProfile />
             <Logo src={LogoImg} />
@@ -27,6 +29,7 @@ function HomeScreen() {
             </MenuHamburgerContainer>
           </ConteinerHeader>
           <DashBoard></DashBoard>
+          {/* Container Content */}
         </Conteiner>
       </Body>
     </>

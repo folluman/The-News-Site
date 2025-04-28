@@ -27,8 +27,8 @@ export const Login = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 20vh;
-  height: 20vh;
+  width: 120px;
+  height: 120px;
 `;
 
 export const PasswordForgot = styled.div`
