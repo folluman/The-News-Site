@@ -11,7 +11,7 @@ export const InputStyle = styled.input<{ icon: string }>`
   background-position: 6px center;
   background-size: 24px;
   padding-left: 35px;
-  width: 70vw;
+  width: 250px;
   height: 5vh;
   border-radius: 10px;
   border: ${borderColor};

@@ -29,18 +29,28 @@ function CreateAdminOrAuthor() {
       placeholder={input.placeholder}
       icon={input.icon}
       type={input.password ? "password" : "text"}
+      style={{marginBottom: '10px'}}
     />
   ));
 
   return (
     <>
-      <InputDiv style={{ marginTop: "20px" }}>
+      <InputDiv style={{ marginTop: "20px"}}>
         <div>
           <h2 style={{ fontSize: "2rem" }}>Create a new Admin or Author</h2>
         </div>
         {listInput}
       </InputDiv>
-      <Select/>
+      <div style={{textAlign: 'center', paddingBottom: '40px'}}>
+      <Select
+      label="Escolha uma opção"
+      options={[
+        {value: 'user', label: 'User'},
+        {value: 'admin', label: 'Admin'},
+        {value: 'author', label: 'Author'},
+      ]}
+      />
+      </div>
     </>
   );
 }

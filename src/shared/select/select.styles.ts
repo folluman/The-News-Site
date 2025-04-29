@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { inputColor } from "../inputs/input.styles";
 
 export const SelectStyle = styled.select`
-  width: 70vw;
+  width: 250px;
   height: 5vh;
   background-color: ${inputColor};
 
