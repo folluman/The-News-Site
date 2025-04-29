@@ -19,6 +19,7 @@ import {
 } from "../../modules/login/styles/loginScreen.styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import isPropValid from "@emotion/is-prop-valid";
 
 type AppScreen = "loginScreen" | "signUpScreen";
 
@@ -130,7 +131,7 @@ function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
       key={index}
       name={input.name}
       placeholder={input.placeholder}
-      icon={input.icon}
+      $icon={input.icon}
       type={input.password ? "password" : "text"}
       value={formData[input.name as keyof typeof formData]}
       onChange={handleChange}
@@ -190,7 +191,7 @@ function SignUpScreen() {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match!");
+      setError("Passwords don't match!");
       setUserCreated("");
       return;
     }
@@ -244,7 +245,7 @@ function SignUpScreen() {
       placeholder: "Email address",
       icon: emailIcon,
       name: "email",
-      onChange: handleChange,
+      
     },
     {
       placeholder: "Phone",
@@ -258,7 +259,7 @@ function SignUpScreen() {
     <InputStyle
       key={index}
       placeholder={input.placeholder}
-      icon={input.icon}
+      $icon={input.icon}
       type={input.password ? "password" : "text"}
       name={input.name}
       onChange={input.onChange}

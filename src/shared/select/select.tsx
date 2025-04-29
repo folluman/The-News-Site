@@ -10,6 +10,8 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 
 function Select({label, options, ...props}: SelectProps) {
   return (
+    <div>
+      {label && <label>{label}</label>}
     <SelectStyle {...props}>
       {options
         ? options.map((option) => (
@@ -19,6 +21,7 @@ function Select({label, options, ...props}: SelectProps) {
           ))
         : props.children}
     </SelectStyle>
+    </div>
   );
 }
 

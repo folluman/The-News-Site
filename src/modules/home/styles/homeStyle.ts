@@ -32,7 +32,7 @@ export const MenuHamburgerContainer = styled.div`
   align-items: center;
   height: 100%;
   position: absolute;
-  top: calc(0px + 25vh);
+  top: 170px;
   left: 10px;
 `;
 

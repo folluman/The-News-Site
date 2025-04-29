@@ -2,9 +2,12 @@ import styled from "styled-components";
 import { inputColor } from "../inputs/input.styles";
 
 export const SelectStyle = styled.select`
-  width: 250px;
+  width: 290px;
   height: 5vh;
   background-color: ${inputColor};
+  border-radius: 10px;
+  padding-left: 20px;
+  font-size: 1rem;
 
   appearance: none;
   -webkit-appearance: none;
