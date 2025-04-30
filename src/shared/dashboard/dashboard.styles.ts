@@ -42,5 +42,6 @@ export const PanelControlContainer = styled.div`
   a {
     text-decoration: none;
     color: #868686;
+    cursor: pointer;
   }
 `

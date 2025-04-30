@@ -83,6 +83,7 @@ export const LinkStyle = styled.div`
 
 export const InputDiv = styled.div`
   height: auto;
+  width: 100%;
   @media (min-width: 360px) {
     text-align: center;
     

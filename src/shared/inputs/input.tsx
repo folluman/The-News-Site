@@ -140,7 +140,7 @@ function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <InputDiv>{listInputsLogin}</InputDiv>
+      <InputDiv style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>{listInputsLogin}</InputDiv>
 
       {error && <ErrorText>{error}</ErrorText>}
 
@@ -268,7 +268,7 @@ function SignUpScreen() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <InputDiv>{listInputs}</InputDiv>
+      <InputDiv style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>{listInputs}</InputDiv>
       {error && <ErrorText>{error}</ErrorText>}
       {userCreated && <UserCreatedText>{userCreated}</UserCreatedText>}
       <ButtonLogin type="submit">Sign Up</ButtonLogin>

@@ -5,7 +5,7 @@ import passwordIcon from "../../assets/passwordIcon.png";
 import phoneIcon from "../../assets/phoneIcon.png";
 import Select from "../select/select";
 import { ButtonLogin } from "../buttons/button.styles";
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 interface singUpInput {
@@ -30,7 +30,7 @@ function CreateAdminOrAuthor() {
 
   const [userCreated, setUserCreated] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -123,6 +123,7 @@ function CreateAdminOrAuthor() {
               { value: "admin", label: "Admin" },
               { value: "author", label: "Author" },
             ]}
+            onChange={handleChange}
             value={formData.role}
           />
         </div>

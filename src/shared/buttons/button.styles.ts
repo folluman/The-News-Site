@@ -4,7 +4,7 @@ const backgroundButton = "#2D2F30";
 
 export const ButtonLogin = styled.button`
   background-color: white;
-  width: 40vh;
+  width: 300px;
   height: 48px;
   background-color: ${backgroundButton};
   color: white;
