@@ -11,19 +11,21 @@ function ListUser() {
         const response = await axios.get("http://localhost:3000/users/list");
         setUsers(response.data);
       } catch {
-        alert('error')
+
       }
     };
-    fetchData()
+    fetchData();
   }, []);
 
   return (
     <>
       <div style={{ paddingBottom: "50px", fontSize: "2rem" }}>
         List Users
-        <ListStyle>{users.map((item) => (
-          <li key={users._id}>{item.username}</li>
-        ))}</ListStyle>
+        <ListStyle>
+          {users.map((item) => (
+            <li key={users._id}>{item.username}</li>
+          ))}
+        </ListStyle>
       </div>
     </>
   );
