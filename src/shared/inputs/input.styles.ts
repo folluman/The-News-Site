@@ -4,7 +4,7 @@ const borderColor = "#1E3440";
 export const inputColor = "#white";
 const colorInputSearch = "#ACACAC";
 
-export const InputStyle = styled.input<{ $icon: string }>`
+export const InputStyle = styled.input<{ $icon?: string }>`
   background-color: ${inputColor};
   background-image: url(${(props) => props.$icon});
   background-repeat: no-repeat;
