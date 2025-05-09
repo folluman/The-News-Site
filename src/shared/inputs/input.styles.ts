@@ -99,7 +99,7 @@ export const ErrorText = styled.div`
   text-align: center;
 `;
 
-export const UserCreatedText = styled.div`
+export const CreatedText = styled.div`
   color: aqua;
   margin-bottom: 15px;
   text-align: center;

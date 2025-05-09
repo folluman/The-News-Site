@@ -1,10 +1,10 @@
-import { InputStyle, InputDiv, ErrorText, UserCreatedText } from "./input.styles";
+import { InputStyle, InputDiv, ErrorText, CreatedText } from "./input.styles";
 import userIcon from "../../assets/userIcon.png";
 import emailIcon from "../../assets/emailIcon.png";
 import passwordIcon from "../../assets/passwordIcon.png";
 import phoneIcon from "../../assets/phoneIcon.png";
 import Select from "../select/select";
-import { ButtonLogin } from "../buttons/button.styles";
+import { Button } from "../buttons/button.styles";
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -30,7 +30,7 @@ function CreateAdminOrAuthor() {
 
   const [userCreated, setUserCreated] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -128,9 +128,9 @@ function CreateAdminOrAuthor() {
           />
         </div>
         {error && <ErrorText>{error}</ErrorText>}
-        {userCreated && <UserCreatedText>{userCreated}</UserCreatedText>}
+        {userCreated && <CreatedText>{userCreated}</CreatedText>}
         <div style={{ textAlign: "center" }}>
-          <ButtonLogin type="submit">SignUp</ButtonLogin>
+          <Button type="submit">SignUp</Button>
         </div>
       </form>
     </>

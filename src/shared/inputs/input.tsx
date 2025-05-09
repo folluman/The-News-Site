@@ -3,14 +3,14 @@ import {
   InputStyle,
   LinkStyle,
   ErrorText,
-  UserCreatedText,
+  CreatedText,
 } from "./input.styles";
 import userIcon from "../../assets/userIcon.png";
 import emailIcon from "../../assets/emailIcon.png";
 import passwordIcon from "../../assets/passwordIcon.png";
 import phoneIcon from "../../assets/phoneIcon.png";
 import { useState } from "react";
-import { ButtonLogin } from "../buttons/button.styles";
+import { Button } from "../buttons/button.styles";
 import {
   PasswordForgot,
   SignUpTxt,
@@ -145,9 +145,9 @@ function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
       {error && <ErrorText>{error}</ErrorText>}
 
       <div>
-        <ButtonLogin type="submit" disabled={loading}>
+        <Button type="submit" disabled={loading}>
           {loading ? "Loading..." : "Login"}
-        </ButtonLogin>
+        </Button>
       </div>
 
       <PasswordForgot>
@@ -270,8 +270,8 @@ function SignUpScreen() {
     <form onSubmit={handleSubmit}>
       <InputDiv style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>{listInputs}</InputDiv>
       {error && <ErrorText>{error}</ErrorText>}
-      {userCreated && <UserCreatedText>{userCreated}</UserCreatedText>}
-      <ButtonLogin type="submit">Sign Up</ButtonLogin>
+      {userCreated && <CreatedText>{userCreated}</CreatedText>}
+      <Button type="submit">Sign Up</Button>
     </form>
   );
 }

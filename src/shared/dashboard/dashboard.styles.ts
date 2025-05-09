@@ -10,11 +10,12 @@ export const DashBoardContainer = styled.div`
 
 export const DashBoardStyled = styled.div`
   border: 1px solid black;
-  height: 250px;
+  height: auto;
   background-color: ${backgroundColorDashboard};
   border-radius: 10px;
   border-style: none;
   box-shadow: 6px 6px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 `;
 
 export const TitleDashContainer = styled.div`
@@ -24,7 +25,7 @@ export const TitleDashContainer = styled.div`
   justify-content: center;
   gap: 10px;
   font-size: 1.2rem;
-  padding: 20px 70px 20px 0;
+  padding: 0px 70px 20px 0;
   font-weight: bold;
 `
 
