@@ -11,9 +11,10 @@ import CreateAdminOrAuthor from "../inputs/inputAdminOrAuthor";
 import ListUser from "../List/list";
 import CreateNews from "../createNews/createNews";
 import ListNews from "../listNews/listNews";
+import CreateCategory from "../createCategory/createCategory";
 
 function DashBoard() {
-  const [viewHome, setHome] = useState('createAuthor')
+  const [viewHome, setHome] = useState('listNews')
 
   return (
     <>
@@ -35,7 +36,7 @@ function DashBoard() {
           {viewHome === 'listNews' ? (<ListNews/>) : 
           viewHome === 'createAuthor' ? (<CreateAdminOrAuthor/>) : 
           viewHome == 'listUser' ? (<ListUser/>) : 
-          viewHome == 'createNews' ? (<CreateNews/>) : ('')}</div>
+          viewHome == 'createNews' ? (<CreateNews/>) : (<CreateCategory/>)}</div>
       </DashBoardContainer>
     </>
   );

@@ -8,6 +8,7 @@ export const Body = styled.div`
   background-color: ${colorBackground};
   width: 100%;
   min-height: 100vh;
+  padding-bottom: 40px;
 `;
 
 export const Conteiner = styled.div`
