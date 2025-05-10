@@ -2,8 +2,13 @@ import { useEffect, useState } from "react";
 import { ListStyle } from "./list.styles";
 import axios from "axios";
 
+interface User {
+  _id: string;
+  username: string;
+}
+
 function ListUser() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [error, setError] = useState('')
   
   useEffect(() => {
@@ -20,12 +25,12 @@ function ListUser() {
 
   return (
     <>
-      <div style={{ paddingBottom: "50px", fontSize: "2rem" }}>
+      <div style={{ paddingBottom: "50px", fontSize: "2rem", marginTop: '40px' }}>
         List Users
-        <ListStyle>
+        <ListStyle style={{marginTop:'20px'}} >
         {error && <p>{error}</p>}
           {users.map((item) => (
-            <li key={users._id}>{item.username}</li>
+            <li key={item._id}>{item.username}</li>
           ))}
         </ListStyle>
       </div>
