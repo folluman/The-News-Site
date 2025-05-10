@@ -8,24 +8,33 @@ import {
 import ImageNews from "../../assets/newsImage.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ErrorText } from "../inputs/input.styles";
 
 interface News {
-  _id?: string,
-  title?: string,
-  src?: any,
-  created: any,
+  _id?: string;
+  title?: string;
+  src?: any;
+  created?: any;
+  imageUrl?: any;
 }
 
 function ListNews() {
   const [news, setNews] = useState<News[]>([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:3000/news/list");
         setNews(response.data);
-      } catch {
-        alert("Error");
+        setError("");
+      } catch (err) {
+        if (axios.isAxiosError(err)) {
+          return setError(
+            err.response?.data?.message || "It's not possible to show the news."
+          );
+        }
+        setError("An unexpected error occurred.");
       }
     };
     fetchData();
@@ -33,10 +42,11 @@ function ListNews() {
 
   return (
     <>
+    {error && <ErrorText style={{marginTop: '40px'}}>{error}</ErrorText>}
       {news.map((item) => (
         <LinkNews href="#">
           <NewsContainer>
-            <NewsImage src={item.src} />
+            <NewsImage src={`https://pixabay.com/pt/illustrations/designer-de-web-interface-de-usu%C3%A1rio-3411373/`} />
             <DateNews>19 de abr</DateNews>
             <TitleNews
               style={{
