@@ -19,7 +19,6 @@ import {
 } from "../../modules/login/styles/loginScreen.styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import isPropValid from "@emotion/is-prop-valid";
 
 type AppScreen = "loginScreen" | "signUpScreen";
 
@@ -210,7 +209,7 @@ function SignUpScreen() {
       if (axios.isAxiosError(error)) {
         const apiError = error.response?.data;
         if (apiError) {
-          setError(`This ${apiError.error}`);
+          setError(`${apiError.error}`);
           setUserCreated("");
           return;
         }
@@ -245,7 +244,7 @@ function SignUpScreen() {
       placeholder: "Email address",
       icon: emailIcon,
       name: "email",
-      
+      onChange: handleChange,
     },
     {
       placeholder: "Phone",

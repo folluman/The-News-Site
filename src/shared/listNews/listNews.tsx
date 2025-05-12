@@ -5,7 +5,6 @@ import {
   DateNews,
   TitleNews,
 } from "./listNews.styles";
-import ImageNews from "../../assets/newsImage.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ErrorText } from "../inputs/input.styles";
@@ -14,7 +13,7 @@ interface News {
   _id?: string;
   title?: string;
   src?: any;
-  created?: any;
+  created_at?: any;
   imageUrl?: any;
 }
 
@@ -42,12 +41,16 @@ function ListNews() {
 
   return (
     <>
-    {error && <ErrorText style={{marginTop: '40px'}}>{error}</ErrorText>}
+      {error && <ErrorText style={{ marginTop: "40px" }}>{error}</ErrorText>}
       {news.map((item) => (
-        <LinkNews href="#">
+        <LinkNews href={`http://localhost:3000/${item._id}`}>
           <NewsContainer>
-            <NewsImage src={`https://pixabay.com/pt/illustrations/designer-de-web-interface-de-usu%C3%A1rio-3411373/`} />
-            <DateNews>19 de abr</DateNews>
+            <NewsImage src={item.src} />
+            <DateNews>{new Date(item.created_at).toLocaleDateString('pt-BR', {
+              day: '2-digit',
+              month: 'long',
+              year: 'numeric'
+            })}</DateNews>
             <TitleNews
               style={{
                 textAlign: "center",
