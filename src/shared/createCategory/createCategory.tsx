@@ -36,7 +36,7 @@ function CreateCategory() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (formData.name == "") {
+    if (formData.name === "") {
       return setError("Please add category name");
     }
 
@@ -47,13 +47,15 @@ function CreateCategory() {
           name: formData.name,
         }
       );
-      setCreated(response.data);
+
+      setCreated(response.data.message);
       setError("");
+      setFormData({ name: "" });
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const apiError = error.response?.data;
         if (apiError) {
-          setError(`${apiError.error}`);
+          setError(apiError.error || apiError.message || "An error occurred");
           setCreated("");
           return;
         }
