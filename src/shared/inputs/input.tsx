@@ -112,9 +112,14 @@ function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
         password: formData.password,
       });
 
-      localStorage.setItem("authToken", response.data.token);
+      localStorage.setItem("token", response.data.token);
 
-      navigate("/");
+      if (response.data.role === 'admin') {
+        return navigate('/')
+      }
+      
+      navigate("/noIsAdmin");
+
     } catch (err) {
       if (axios.isAxiosError(err)) {
         return setError(err.response?.data?.message || "Login failed!");
@@ -139,7 +144,15 @@ function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <InputDiv style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>{listInputsLogin}</InputDiv>
+      <InputDiv
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {listInputsLogin}
+      </InputDiv>
 
       {error && <ErrorText>{error}</ErrorText>}
 
@@ -204,7 +217,7 @@ function SignUpScreen() {
       });
 
       setUserCreated(response.data.message);
-      setError("")
+      setError("");
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const apiError = error.response?.data;
@@ -267,7 +280,15 @@ function SignUpScreen() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <InputDiv style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>{listInputs}</InputDiv>
+      <InputDiv
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        {listInputs}
+      </InputDiv>
       {error && <ErrorText>{error}</ErrorText>}
       {userCreated && <CreatedText>{userCreated}</CreatedText>}
       <Button type="submit">Sign Up</Button>
