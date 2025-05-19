@@ -1,19 +1,55 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export function useUserRole() {
   const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
+    const fetchUserRole = async () => {
       try {
-        const payload = JSON.parse(atob(token.split('.')[1]));
-        setUserRole(payload.role);
-      } catch (error) {
-        console.error('Erro ao decodificar token:', error);
+        const response = await axios.get("http://localhost:3000/users/me", {
+          withCredentials: true,
+        });
+
+        if (response.data.role) {
+          return setUserRole(response.data.role);
+        }
+      } catch (err) {
+        if (axios.isAxiosError(err)) {
+          setUserRole(null);
+          return;
+        }
+        setUserRole(null);
       }
-    }
+    };
+    fetchUserRole();
   }, []);
 
   return userRole;
+}
+
+export function useUsername() {
+  const [userName, setUsername] = useState(null);
+
+  useEffect(() => {
+    const fetchUsername = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/users/me", {
+          withCredentials: true,
+        });
+
+        if (response.data.username) {
+          return setUsername(response.data.username);
+        }
+      } catch (err) {
+        if (axios.isAxiosError(err)) {
+          setUsername(null);
+          return;
+        }
+        setUsername(null);
+      }
+    };
+    fetchUsername()
+  }, []);
+  return userName;
 }

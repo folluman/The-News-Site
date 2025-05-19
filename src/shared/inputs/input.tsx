@@ -107,19 +107,18 @@ function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/users/login", {
-        email: formData.email,
-        password: formData.password,
-      });
+      const response = await axios.post(
+        "http://localhost:3000/users/login",
+        {
+          email: formData.email,
+          password: formData.password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
 
-      localStorage.setItem("token", response.data.token);
-
-      if (response.data.role === 'admin') {
-        return navigate('/')
-      }
-      
-      navigate("/noIsAdmin");
-
+      return navigate("/");
     } catch (err) {
       if (axios.isAxiosError(err)) {
         return setError(err.response?.data?.message || "Login failed!");
