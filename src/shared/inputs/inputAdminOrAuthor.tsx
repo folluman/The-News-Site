@@ -119,7 +119,6 @@ function CreateAdminOrAuthor() {
             name="role"
             label="Select type user"
             options={[
-              { value: "user", label: "User" },
               { value: "admin", label: "Admin" },
               { value: "author", label: "Author" },
             ]}

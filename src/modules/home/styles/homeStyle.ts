@@ -11,14 +11,14 @@ export const Body = styled.div`
   padding-bottom: 40px;
 `;
 
-export const Conteiner = styled.div`
+export const Container = styled.div`
   width: 100%;
   height: 100%;
   max-width: 360px;
   margin: auto;
 `;
 
-export const ConteinerHeader = styled.div`
+export const ContainerHeader = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;

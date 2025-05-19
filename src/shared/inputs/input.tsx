@@ -99,7 +99,7 @@ function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
     setLoading(true);
     setError("");
 
-    // Validação básica
+    // Check if the fields are filled in
     if (!formData.email || !formData.password) {
       setError("Please fill in all fields");
       setLoading(false);

@@ -1,7 +1,7 @@
 import {
   Body,
-  Conteiner,
-  ConteinerHeader,
+  Container,
+  ContainerHeader,
   MenuHamburgerContainer,
   MenuHamburger,
 } from "../styles/homeStyle";
@@ -17,9 +17,9 @@ function HomeScreen() {
   return (
     <>
       <Body>
-        <Conteiner>
+        <Container>
           {/* Container Header */}
-          <ConteinerHeader>
+          <ContainerHeader>
             <MenuProfile />
             <Logo src={LogoImg} />
             <InputSearch />
@@ -27,10 +27,10 @@ function HomeScreen() {
               <MenuHamburger src={HamburgerIcon} />
               Categories
             </MenuHamburgerContainer>
-          </ConteinerHeader>
+          </ContainerHeader>
           <DashBoard></DashBoard>
           {/* Container Content */}
-        </Conteiner>
+        </Container>
       </Body>
     </>
   );
