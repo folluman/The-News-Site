@@ -16,6 +16,9 @@ export const Container = styled.div`
   height: 100%;
   max-width: 360px;
   margin: auto;
+  @media (min-width: 720px) {
+    max-width: 720px;
+  }
 `;
 
 export const ContainerHeader = styled.div`
@@ -25,6 +28,13 @@ export const ContainerHeader = styled.div`
   align-items: center;
   gap: 40px;
   padding-top: 40px;
+
+  @media (min-width: 720px) {
+    max-width: 720px;
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+  }
 `;
 
 export const MenuHamburgerContainer = styled.div`
@@ -35,6 +45,11 @@ export const MenuHamburgerContainer = styled.div`
   position: absolute;
   top: 170px;
   left: 10px;
+
+  @media (min-width: 720px) {
+    left: 520px;
+    top: 10px;
+  }
 `;
 
 export const MenuHamburger = styled.img``;

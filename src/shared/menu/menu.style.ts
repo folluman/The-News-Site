@@ -8,6 +8,10 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     color: white;
+    @media (min-width: 720px) {
+        right: calc(0px + 1vw);
+    top: calc(0px + 8vw);
+    }
 `
 
 export const ProfileIcon = styled.img`

@@ -84,12 +84,10 @@ export const LinkStyle = styled.div`
 export const InputDiv = styled.div`
   height: auto;
   width: 100%;
-  @media (min-width: 360px) {
-    text-align: center;
-    
-    div {
-      margin-bottom: 20px;
-    }
+  text-align: center;
+  margin-bottom: 20px;
+  @media (min-width: 720px) {
+    width: 55%
   }
 `;
 

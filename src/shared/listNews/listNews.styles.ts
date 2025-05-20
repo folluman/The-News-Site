@@ -1,4 +1,4 @@
-import styled, { withTheme } from "styled-components";
+import styled from "styled-components";
 
 const colorDate = "#C8C3C3";
 const colorTitle = 'white'

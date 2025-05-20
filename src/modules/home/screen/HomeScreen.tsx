@@ -19,7 +19,7 @@ function HomeScreen() {
       <Body>
         <Container>
           {/* Container Header */}
-          <ContainerHeader>
+          <ContainerHeader style={{}}>
             <MenuProfile />
             <Logo src={LogoImg} />
             <InputSearch />
