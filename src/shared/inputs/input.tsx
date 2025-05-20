@@ -117,8 +117,9 @@ function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
           withCredentials: true,
         }
       );
-
-      return navigate("/");
+      if(response){
+        return navigate("/");
+      }
     } catch (err) {
       if (axios.isAxiosError(err)) {
         return setError(err.response?.data?.message || "Login failed!");
