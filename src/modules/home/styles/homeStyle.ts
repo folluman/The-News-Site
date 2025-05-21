@@ -19,6 +19,10 @@ export const Container = styled.div`
   @media (min-width: 720px) {
     max-width: 720px;
   }
+
+  @media (min-width: 1080px) {
+    max-width: 1080px;
+  }
 `;
 
 export const ContainerHeader = styled.div`
@@ -30,10 +34,12 @@ export const ContainerHeader = styled.div`
   padding-top: 40px;
 
   @media (min-width: 720px) {
-    max-width: 720px;
-    display: flex;
     flex-direction: row;
     gap: 0px;
+  }
+
+  @media (min-width: 1080px) {
+    max-width: 1080px;
   }
 `;
 
@@ -49,6 +55,10 @@ export const MenuHamburgerContainer = styled.div`
   @media (min-width: 720px) {
     left: 520px;
     top: 10px;
+  }
+
+  @media (min-width: 1080px) {
+    left: 620px;
   }
 `;
 

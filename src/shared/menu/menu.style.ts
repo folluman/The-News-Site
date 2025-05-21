@@ -8,9 +8,10 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     color: white;
+    cursor: pointer;
     @media (min-width: 720px) {
-        right: calc(0px + 1vw);
-    top: calc(0px + 8vw);
+        right: 0px;
+        top: 10px;
     }
 `
 
@@ -20,8 +21,8 @@ export const ProfileIcon = styled.img`
 `
 
 export const Login = styled.div`
-    border: black 2px solid;
-    padding: 4px;
+    border: black 1px solid;
+    padding: 15px;
     &:hover {
         background-color: gray;
     }

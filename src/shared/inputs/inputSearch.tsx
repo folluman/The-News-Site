@@ -1,4 +1,4 @@
-import { InputDiv, Input } from "./input.styles";
+import { InputDivSearch, Input } from "./input.styles";
 import searchIcon from "../../assets/Search.png";
 
 interface InputInterface {
@@ -26,7 +26,7 @@ function InputSearch() {
     />
   ));
 
-  return <InputDiv>{listInputs}</InputDiv>;
+  return <InputDivSearch>{listInputs}</InputDivSearch>;
 }
 
 export default InputSearch;

@@ -44,3 +44,9 @@ export const TrashImg = styled.div`
     right: 10px;
     bottom: 0px;
 `
+export const ListContainer = styled.div`
+  @media (min-width: 720px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+`

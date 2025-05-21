@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { ListStyle, SearchUser, UserStyle, TrashImg } from "./list.styles";
+import {
+  ListStyle,
+  SearchUser,
+  UserStyle,
+  TrashImg,
+  ListContainer,
+} from "./list.styles";
 import axios from "axios";
 import searchIcon from "../../assets/Search.png";
 import iconProfile from "../../assets/profileIcon.svg";
@@ -37,23 +43,29 @@ function ListUser() {
       />
 
       {error && <ErrorText>{error}</ErrorText>}
-      {users.map((item) => (
-        <ListStyle>
-          <UserStyle>
-            <img src={iconProfile} alt="" style={{ margin: "0px 0 0 10px" }} />
-            <div style={{ color: "white" }}>
-              <ul>
-                <li>ID: {item._id}</li>
-                <li>USERNAME: {item.username}</li>
-                <li>ROLE: {item.role}</li>
-              </ul>
-            </div>
-            <TrashImg>
-              <img src={trashIcon} alt="" />
-            </TrashImg>
-          </UserStyle>
-        </ListStyle>
-      ))}
+      <ListContainer>
+        {users.map((item) => (
+          <ListStyle>
+            <UserStyle>
+              <img
+                src={iconProfile}
+                alt=""
+                style={{ margin: "0px 0 0 10px" }}
+              />
+              <div style={{ color: "white" }}>
+                <ul>
+                  <li>ID: {item._id}</li>
+                  <li>USERNAME: {item.username}</li>
+                  <li>ROLE: {item.role}</li>
+                </ul>
+              </div>
+              <TrashImg>
+                <img src={trashIcon} alt="" />
+              </TrashImg>
+            </UserStyle>
+          </ListStyle>
+        ))}
+      </ListContainer>
     </>
   );
 }

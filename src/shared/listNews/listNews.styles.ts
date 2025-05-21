@@ -7,6 +7,14 @@ export const LinkNews = styled.a`
   text-decoration: none;
 `;
 
+export const ContainerNews = styled.div`
+@media (min-width: 720px) {
+   display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+`
+
 export const NewsContainer = styled.div`
   height: 320px;
   width: 310px;
@@ -14,6 +22,9 @@ export const NewsContainer = styled.div`
   border-radius: 10px;
   margin: auto;
   margin-top: 80px;
+  @media (min-width: 1080px) {
+    margin-top: 0;
+  }
 `;
 
 export const NewsImage = styled.img`

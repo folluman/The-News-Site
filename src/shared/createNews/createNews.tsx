@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { TextNews } from "./createNews.styles";
+import { TextNews, FormNews } from "./createNews.styles";
 import axios from "axios";
 import { CreatedText, ErrorText } from "../inputs/input.styles";
 import { Button } from "../buttons/button.styles";
@@ -86,7 +86,7 @@ function CreateNews() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <FormNews onSubmit={handleSubmit}>
         <h2 style={{textAlign: 'center', fontSize: '2rem', margin: '20px 0'}}>Create News</h2>
         {listInputs}
         <input 
@@ -98,7 +98,7 @@ function CreateNews() {
         {error && <ErrorText>{error}</ErrorText>}
         {created && <CreatedText>{created}</CreatedText>}
         <Button type="submit" style={{margin: '20px 0'}}>Create News</Button>
-      </form>
+      </FormNews>
     </>
   );
 }

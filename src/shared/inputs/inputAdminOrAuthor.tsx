@@ -108,17 +108,20 @@ function CreateAdminOrAuthor() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <InputDiv style={{ marginTop: "20px" }}>
+        <InputDiv style={{ marginTop: "0px" }}>
           <div>
-            <h2 style={{ fontSize: "2rem" }}>Create a new Admin or Author</h2>
+            <h2 style={{ fontSize: "2rem", maxWidth: '320px', marginBottom: '40px' }}>Create a new Admin or Author</h2>
           </div>
           {listInput}
         </InputDiv>
+       
         <div style={{ textAlign: "center", paddingBottom: "40px" }}>
+           Select Type User:
           <Select
             name="role"
-            label="Select type user"
+            label=""
             options={[
+               { value: "user", label: "User" },
               { value: "admin", label: "Admin" },
               { value: "author", label: "Author" },
             ]}

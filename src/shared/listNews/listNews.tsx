@@ -4,6 +4,7 @@ import {
   LinkNews,
   DateNews,
   TitleNews,
+  ContainerNews
 } from "./listNews.styles";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -42,6 +43,7 @@ function ListNews() {
   return (
     <>
       {error && <ErrorText style={{ marginTop: "40px" }}>{error}</ErrorText>}
+      <ContainerNews>
       {news.map((item) => (
         <LinkNews href={`http://localhost:3000/${item._id}`}>
           <NewsContainer>
@@ -63,6 +65,7 @@ function ListNews() {
           </NewsContainer>
         </LinkNews>
       ))}
+      </ContainerNews>
     </>
   );
 }

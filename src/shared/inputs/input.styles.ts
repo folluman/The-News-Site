@@ -41,9 +41,8 @@ export const LinkStyle = styled.div`
     position: relative;
     padding-bottom: 8px;
     color: white;
-    overflow: hidden; /* Para conter o pseudo-elemento */
+    overflow: hidden;
 
-    /* Linha base (invisível quando inativo) */
     &::after {
       content: "";
       position: absolute;
@@ -51,7 +50,7 @@ export const LinkStyle = styled.div`
       left: 0;
       width: 0;
       height: 3px;
-      background-color: #0AD8D8;
+      background-color: #0ad8d8;
       border-radius: 3px 3px 0 0;
       transition: width 0.4s cubic-bezier(0.65, 0, 0.35, 1);
     }
@@ -59,7 +58,7 @@ export const LinkStyle = styled.div`
     &[data-active="true"]::after {
       width: 100%;
     }
-   
+
     &:active::after {
       animation: rippleEffect 0.6s cubic-bezier(0.65, 0, 0.35, 1);
     }
@@ -71,7 +70,7 @@ export const LinkStyle = styled.div`
       opacity: 1;
     }
     50% {
-      transform: scaleX(1.1); /* Pequeno overshoot para efeito elástico */
+      transform: scaleX(1.1);
       opacity: 0.8;
     }
     100% {
@@ -87,7 +86,20 @@ export const InputDiv = styled.div`
   text-align: center;
   margin-bottom: 20px;
   @media (min-width: 720px) {
-    width: 55%
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+export const InputDivSearch = styled.div`
+  height: auto;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  @media (min-width: 720px) {
+    width: 55%;
   }
 `;
 
@@ -101,9 +113,9 @@ export const CreatedText = styled.div`
   color: aqua;
   margin-bottom: 15px;
   text-align: center;
-`
+`;
 
-export const Input = styled.input<{icon: string}>`
+export const Input = styled.input<{ icon: string }>`
   background-color: ${colorInputSearch};
   background-image: url(${(props) => props.icon});
   width: 300px;
