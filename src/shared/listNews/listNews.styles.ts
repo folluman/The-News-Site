@@ -30,6 +30,8 @@ export const NewsContainer = styled.div`
 export const NewsImage = styled.img`
   width: 100%;
   height: 200px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
 `;
 
 export const DateNews = styled.div`

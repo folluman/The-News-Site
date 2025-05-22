@@ -4,11 +4,12 @@ import {
   LinkNews,
   DateNews,
   TitleNews,
-  ContainerNews
+  ContainerNews,
 } from "./listNews.styles";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ErrorText } from "../inputs/input.styles";
+import { useUserRole } from "../../authentication/useUserRole";
 
 interface News {
   _id?: string;
@@ -21,6 +22,7 @@ interface News {
 function ListNews() {
   const [news, setNews] = useState<News[]>([]);
   const [error, setError] = useState("");
+  const userRole = useUserRole();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,19 +42,53 @@ function ListNews() {
     fetchData();
   }, []);
 
+  if (userRole === "admin" || userRole === "author") {
+    return (
+      <>
+        {error && <ErrorText style={{ marginTop: "40px" }}>{error}</ErrorText>}
+        <ContainerNews>
+          {news.map((item) => (
+            <LinkNews href={`http://localhost:5173/${item._id}`}>
+              <NewsContainer>
+                <NewsImage src={item.src} />
+                <DateNews>
+                  {new Date(item.created_at).toLocaleDateString("pt-BR", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </DateNews>
+                <TitleNews
+                  style={{
+                    textAlign: "center",
+                    padding: "20px 2px",
+                    fontSize: "1.2rem",
+                  }}
+                >
+                  {item.title}
+                </TitleNews>
+              </NewsContainer>
+            </LinkNews>
+          ))}
+        </ContainerNews>
+      </>
+    );
+  }
+
   return (
     <>
       {error && <ErrorText style={{ marginTop: "40px" }}>{error}</ErrorText>}
-      <ContainerNews>
       {news.map((item) => (
-        <LinkNews href={`http://localhost:3000/${item._id}`}>
+        <LinkNews href={`http://localhost:5173/${item._id}`}>
           <NewsContainer>
             <NewsImage src={item.src} />
-            <DateNews>{new Date(item.created_at).toLocaleDateString('pt-BR', {
-              day: '2-digit',
-              month: 'long',
-              year: 'numeric'
-            })}</DateNews>
+            <DateNews>
+              {new Date(item.created_at).toLocaleDateString("pt-BR", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+              })}
+            </DateNews>
             <TitleNews
               style={{
                 textAlign: "center",
@@ -65,7 +101,6 @@ function ListNews() {
           </NewsContainer>
         </LinkNews>
       ))}
-      </ContainerNews>
     </>
   );
 }

@@ -8,12 +8,12 @@ function ErrorPage() {
     <>
       <Body>
         <Container>
-          <ContainerHeader>
+          <ContainerHeader style={{display: 'flow', textAlign: 'center', marginTop: '60px' }}>
             <Logo src={LogoImg} />
-            <h2 style={{ color: "white", fontSize: "1.4rem" }}>
+            <h2 style={{ color: "white", fontSize: "1.4rem", margin: '50px' }}>
               Error 404: Page Not Found!
             </h2>
-            <HomeLink>
+            <HomeLink style={{ maxWidth: '120px', margin: 'auto', marginTop: '40px'}}>
               <a href="/" style={{ textDecoration: "none", color: "white" }}>
                 Home Page
               </a>
