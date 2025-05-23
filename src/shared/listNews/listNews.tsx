@@ -11,21 +11,17 @@ import axios from "axios";
 import { ErrorText } from "../inputs/input.styles";
 import { useUserRole } from "../../authentication/useUserRole";
 
-interface News {
+export interface NewsInterface {
   _id?: string;
   title?: string;
   src?: any;
   created_at?: any;
   imageUrl?: any;
+  content?: string;
 }
 
-function ListNews() {
-  const [news, setNews] = useState<News[]>([]);
-  const [error, setError] = useState("");
-  const userRole = useUserRole();
-
-  useEffect(() => {
-    const fetchData = async () => {
+export function News(setNews: any, setError: any) {
+  const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:3000/news/list");
         setNews(response.data);
@@ -40,6 +36,15 @@ function ListNews() {
       }
     };
     fetchData();
+}
+
+function ListNews() {
+  const [news, setNews] = useState<NewsInterface[]>([]);
+  const [error, setError] = useState("");
+  const userRole = useUserRole();
+
+  useEffect(() => {
+    News(setNews, setError)
   }, []);
 
   if (userRole === "admin" || userRole === "author") {
@@ -48,7 +53,7 @@ function ListNews() {
         {error && <ErrorText style={{ marginTop: "40px" }}>{error}</ErrorText>}
         <ContainerNews>
           {news.map((item) => (
-            <LinkNews href={`http://localhost:5173/${item._id}`}>
+            <LinkNews href={`http://localhost:5173/news/${item._id}`}>
               <NewsContainer>
                 <NewsImage src={item.src} />
                 <DateNews>
@@ -79,7 +84,7 @@ function ListNews() {
     <>
       {error && <ErrorText style={{ marginTop: "40px" }}>{error}</ErrorText>}
       {news.map((item) => (
-        <LinkNews href={`http://localhost:5173/${item._id}`}>
+        <LinkNews href={`http://localhost:5173/news/${item._id}`}>
           <NewsContainer>
             <NewsImage src={item.src} />
             <DateNews>
