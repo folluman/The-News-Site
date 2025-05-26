@@ -20,6 +20,7 @@ import { useParams } from "react-router-dom";
 import { useUserRole } from "../../../authentication/useUserRole";
 import { ContainerHeader, Container } from "../../home/styles/homeStyle";
 import { HomeLink } from "../../errorPage/styles/errorPage.styles";
+import ErrorPage from "../../errorPage/screen/ErrorPageScreen";
 
 function NewsPage() {
   const [news, setNews] = useState<NewsInterface | null>(null);
@@ -51,12 +52,8 @@ function NewsPage() {
     fetchData();
   }, [id]);
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-
   if (!news) {
-    return <div>News not found</div>;
+    return <ErrorPage/>;
   }
 
   if (userRole) {

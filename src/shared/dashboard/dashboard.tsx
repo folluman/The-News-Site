@@ -14,7 +14,12 @@ import ListNews from "../listNews/listNews";
 import CreateCategory from "../createCategory/createCategory";
 import { useUserRole } from "../../authentication/useUserRole";
 
-function DashBoard() {
+interface DashBoardProps {
+  searchNews?: string;
+  setSearchNews?: (value: string) => void;
+}
+
+function DashBoard({ searchNews = '', setSearchNews = () => {} }: DashBoardProps) {
   const [viewHome, setHome] = useState("listNews");
   const userRole = useUserRole();
 
@@ -37,7 +42,7 @@ function DashBoard() {
           </DashBoardStyled>
           <div style={{ color: "white" }}>
             {viewHome === "listNews" ? (
-              <ListNews />
+              <ListNews searchNews={searchNews}/>
             ) : viewHome === "createAuthor" ? (
               <CreateAdminOrAuthor />
             ) : viewHome == "listUser" ? (
@@ -56,7 +61,7 @@ function DashBoard() {
   return (
     <>
       <div style={{paddingTop:'40px'}}>
-        <ListNews />
+        <ListNews searchNews={searchNews}/>
       </div>
     </>
   );

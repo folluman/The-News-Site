@@ -38,7 +38,7 @@ export function News(setNews: any, setError: any) {
     fetchData();
 }
 
-function ListNews() {
+function ListNews({searchNews}: any) {
   const [news, setNews] = useState<NewsInterface[]>([]);
   const [error, setError] = useState("");
   const userRole = useUserRole();
@@ -47,12 +47,16 @@ function ListNews() {
     News(setNews, setError)
   }, []);
 
+  const filterNews = news.filter(notice => 
+    notice.title?.toLocaleLowerCase().includes(searchNews.toLowerCase())
+  )
+
   if (userRole === "admin" || userRole === "author") {
     return (
       <>
         {error && <ErrorText style={{ marginTop: "40px" }}>{error}</ErrorText>}
         <ContainerNews>
-          {news.map((item) => (
+          {filterNews.map((item) => (
             <LinkNews href={`http://localhost:5173/news/${item._id}`}>
               <NewsContainer>
                 <NewsImage src={item.src} />
@@ -83,7 +87,7 @@ function ListNews() {
   return (
     <>
       {error && <ErrorText style={{ marginTop: "40px" }}>{error}</ErrorText>}
-      {news.map((item) => (
+      {filterNews.map((item) => (
         <LinkNews href={`http://localhost:5173/news/${item._id}`}>
           <NewsContainer>
             <NewsImage src={item.src} />

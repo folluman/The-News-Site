@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import {
   ListStyle,
   SearchUser,
@@ -34,17 +34,24 @@ function ListUser() {
     fetchData();
   }, []);
 
+  const [search, setSearch] = useState("");
+
+  const filterUser = users.filter(user => 
+    user.username.toLowerCase().includes(search.toLocaleLowerCase())
+  )
+
   return (
     <>
       <SearchUser
         placeholder="Search User"
         icon={searchIcon}
         style={{ marginTop: "40px" }}
+        onChange={(e) => setSearch(e.target.value)}
       />
 
       {error && <ErrorText>{error}</ErrorText>}
       <ListContainer>
-        {users.map((item) => (
+        {filterUser.map((item) => (
           <ListStyle>
             <UserStyle>
               <img

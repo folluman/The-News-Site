@@ -7,7 +7,7 @@ interface InputInterface {
   placeholder: string;
 }
 
-function InputSearch() {
+function InputSearch({searchNews, setSearchNews}: any) {
   const inputs: InputInterface[] = [
     {
       name: "searchPost",
@@ -23,6 +23,7 @@ function InputSearch() {
       icon={input.icon}
       type="text"
       placeholder={input.placeholder}
+      onChange={(e) => setSearchNews(e.target.value)}
     />
   ));
 

@@ -19,9 +19,11 @@ import HamburgerIcon from "../../../assets/menuCategory.svg";
 import DashBoard from "../../../shared/dashboard/dashboard";
 import { useUserRole } from "../../../authentication/useUserRole";
 import ListNews from "../../../shared/listNews/listNews";
+import { useState } from "react";
 
 function HomeScreen() {
   const userRole = useUserRole();
+  const [searchNews, setSearchNews] = useState("");
 
   if (userRole === "admin" || userRole === "author") {
     return (
@@ -32,13 +34,13 @@ function HomeScreen() {
             <ContainerHeader>
               <MenuProfile />
               <Logo src={LogoImg} />
-              <InputSearch />
+              <InputSearch searchNews={searchNews} setSearchNews={setSearchNews}/>
               <MenuHamburgerContainer>
                 <MenuHamburger src={HamburgerIcon} />
                 Categories
               </MenuHamburgerContainer>
             </ContainerHeader>
-            <DashBoard></DashBoard>
+            <DashBoard searchNews={searchNews} setSearchNews={setSearchNews}></DashBoard>
             {/* Container Content */}
           </Container>
         </Body>
@@ -56,17 +58,19 @@ function HomeScreen() {
           </Header>
           <SectionLogo>
             <Logo src={LogoImg} style={{ margin: "40px 0 20px 0" }} />
-            <h2 style={{margin: '0px 0 40px 0', color: 'white'}}>Atualize-se sem precisar de mil abas abertas.</h2>
+            <h2 style={{ margin: "0px 0 40px 0", color: "white" }}>
+              Atualize-se sem precisar de mil abas abertas.
+            </h2>
           </SectionLogo>
           <SectionInput>
             <MenuHamburgerContainerUser>
               <MenuHamburger src={HamburgerIcon} />
               Categories
             </MenuHamburgerContainerUser>
-            <InputSearch />
+            <InputSearch searchNews={searchNews} setSearchNews={setSearchNews}/>
           </SectionInput>
           <SectionNews>
-            <ListNews />
+            <ListNews searchNews={searchNews}/>
           </SectionNews>
         </ContainerUser>
       </Body>

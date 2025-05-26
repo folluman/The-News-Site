@@ -19,9 +19,9 @@ export const SearchUser = styled.input<{icon: string}>`
   background-repeat: no-repeat;
   background-position: 6px center;
   background-size: 14px;
+  padding-left: 30px;
   &::placeholder {
     color: black;
-    padding-left: 30px
   }
 `;
 
