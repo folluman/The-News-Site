@@ -24,7 +24,6 @@ import ErrorPage from "../../errorPage/screen/ErrorPageScreen";
 
 function NewsPage() {
   const [news, setNews] = useState<NewsInterface | null>(null);
-  const [error, setError] = useState("");
   const { id } = useParams();
   const userRole = useUserRole();
 
@@ -32,20 +31,17 @@ function NewsPage() {
     const fetchData = async () => {
       try {
         if (!id) {
-          setError("ID not found");
+          alert("ID news not found");
           return;
         }
 
         const response = await axios.get(`http://localhost:3000/news/${id}`);
         setNews(response.data);
-        setError("");
       } catch (err) {
         if (axios.isAxiosError(err)) {
-          return setError(
-            err.response?.data?.message || "It's not possible to show the news."
-          );
+          return alert("It's not possible to show the news.");
         }
-        return setError("An unexpected error occurred.");
+        return alert("An unexpected error occurred.");
       }
     };
 
@@ -53,7 +49,7 @@ function NewsPage() {
   }, [id]);
 
   if (!news) {
-    return <ErrorPage/>;
+    return <ErrorPage />;
   }
 
   if (userRole) {
@@ -102,11 +98,9 @@ function NewsPage() {
 
   return (
     <>
-      <Body style={{maxHeight: '100vh'}}>
+      <Body style={{ maxHeight: "100vh" }}>
         <Container>
-          <ContainerHeader
-            style={{ display: "flow", textAlign: "center"}}
-          >
+          <ContainerHeader style={{ display: "flow", textAlign: "center" }}>
             <Logo src={LogoImg} />
             <h2 style={{ color: "white", fontSize: "1.4rem", margin: "50px" }}>
               User not found, please login to acess the news
@@ -114,7 +108,10 @@ function NewsPage() {
             <HomeLink
               style={{ maxWidth: "120px", margin: "auto", marginTop: "40px" }}
             >
-              <a href="/login" style={{ textDecoration: "none", color: "white" }}>
+              <a
+                href="/login"
+                style={{ textDecoration: "none", color: "white" }}
+              >
                 Login
               </a>
             </HomeLink>

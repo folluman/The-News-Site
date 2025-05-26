@@ -7,7 +7,7 @@ interface InputInterface {
   placeholder: string;
 }
 
-function InputSearch({searchNews, setSearchNews}: any) {
+function InputSearch({setSearchNews}: any) {
   const inputs: InputInterface[] = [
     {
       name: "searchPost",

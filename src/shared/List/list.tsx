@@ -37,7 +37,8 @@ function ListUser() {
   const [search, setSearch] = useState("");
 
   const filterUser = users.filter(user => 
-    user.username.toLowerCase().includes(search.toLocaleLowerCase())
+    user.username.toLowerCase().includes(search.toLocaleLowerCase()) ||
+    user._id.toLocaleLowerCase().includes(search.toLocaleLowerCase())
   )
 
   return (

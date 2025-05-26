@@ -34,14 +34,17 @@ function HomeScreen() {
             <ContainerHeader>
               <MenuProfile />
               <Logo src={LogoImg} />
-              <InputSearch searchNews={searchNews} setSearchNews={setSearchNews}/>
+              <InputSearch
+                searchNews={searchNews}
+                setSearchNews={setSearchNews}
+              />
               <MenuHamburgerContainer>
                 <MenuHamburger src={HamburgerIcon} />
                 Categories
               </MenuHamburgerContainer>
             </ContainerHeader>
-            <DashBoard searchNews={searchNews} setSearchNews={setSearchNews}></DashBoard>
             {/* Container Content */}
+            <DashBoard searchNews={searchNews}></DashBoard>
           </Container>
         </Body>
       </>
@@ -67,10 +70,13 @@ function HomeScreen() {
               <MenuHamburger src={HamburgerIcon} />
               Categories
             </MenuHamburgerContainerUser>
-            <InputSearch searchNews={searchNews} setSearchNews={setSearchNews}/>
+            <InputSearch
+              searchNews={searchNews}
+              setSearchNews={setSearchNews}
+            />
           </SectionInput>
           <SectionNews>
-            <ListNews searchNews={searchNews}/>
+            <ListNews searchNews={searchNews} />
           </SectionNews>
         </ContainerUser>
       </Body>

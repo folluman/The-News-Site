@@ -16,10 +16,9 @@ import { useUserRole } from "../../authentication/useUserRole";
 
 interface DashBoardProps {
   searchNews?: string;
-  setSearchNews?: (value: string) => void;
 }
 
-function DashBoard({ searchNews = '', setSearchNews = () => {} }: DashBoardProps) {
+function DashBoard({ searchNews }: DashBoardProps) {
   const [viewHome, setHome] = useState("listNews");
   const userRole = useUserRole();
 

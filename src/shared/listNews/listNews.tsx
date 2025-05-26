@@ -22,34 +22,36 @@ export interface NewsInterface {
 
 export function News(setNews: any, setError: any) {
   const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/news/list");
-        setNews(response.data);
-        setError("");
-      } catch (err) {
-        if (axios.isAxiosError(err)) {
-          return setError(
-            err.response?.data?.message || "It's not possible to show the news."
-          );
-        }
-        setError("An unexpected error occurred.");
+    try {
+      const response = await axios.get("http://localhost:3000/news/list");
+      setNews(response.data);
+      setError("");
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        return setError(
+          err.response?.data?.message || "It's not possible to show the news."
+        );
       }
-    };
-    fetchData();
+      setError("An unexpected error occurred.");
+    }
+  };
+  fetchData();
 }
 
-function ListNews({searchNews}: any) {
+function ListNews({ searchNews }: any) {
   const [news, setNews] = useState<NewsInterface[]>([]);
   const [error, setError] = useState("");
   const userRole = useUserRole();
 
   useEffect(() => {
-    News(setNews, setError)
+    News(setNews, setError);
   }, []);
 
-  const filterNews = news.filter(notice => 
-    notice.title?.toLocaleLowerCase().includes(searchNews.toLowerCase())
-  )
+  const filterNews = news.filter(
+    (notice) =>
+      notice.title?.toLocaleLowerCase().includes(searchNews.toLowerCase()) ||
+      notice.content?.toLocaleLowerCase().includes(searchNews.toLowerCase())
+  );
 
   if (userRole === "admin" || userRole === "author") {
     return (

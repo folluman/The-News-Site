@@ -122,7 +122,7 @@ function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
       }
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        return setError(err.response?.data?.message || "Login failed!");
+        return setError(err.response?.data?.message);
       }
       setError("An unexpected error occurred.");
     } finally {
