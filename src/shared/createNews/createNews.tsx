@@ -37,7 +37,7 @@ function CreateNews() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/news/create",
+        "https://the-news-api-jpvv.onrender.com/news/create",
         formDataToSend,
         {
           headers: {

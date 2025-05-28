@@ -42,7 +42,7 @@ function CreateCategory() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/category/create",
+        "https://the-news-api-jpvv.onrender.com/category/create",
         {
           name: formData.name,
         }

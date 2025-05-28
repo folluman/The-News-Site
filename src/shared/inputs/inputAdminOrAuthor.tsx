@@ -48,7 +48,7 @@ function CreateAdminOrAuthor() {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/users/signup", {
+      const response = await axios.post("https://the-news-api-jpvv.onrender.com/users/signup", {
         username: formData.username,
         password: formData.password,
         email: formData.email,

@@ -35,7 +35,7 @@ function NewsPage() {
           return;
         }
 
-        const response = await axios.get(`http://localhost:3000/news/${id}`);
+        const response = await axios.get(`https://the-news-api-jpvv.onrender.com/news/${id}`);
         setNews(response.data);
       } catch (err) {
         if (axios.isAxiosError(err)) {

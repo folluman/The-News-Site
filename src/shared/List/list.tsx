@@ -25,7 +25,7 @@ function ListUser() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/users/list");
+        const response = await axios.get("https://the-news-api-jpvv.onrender.com/users/list");
         setUsers(response.data);
       } catch {
         setError("Users list not found!");
