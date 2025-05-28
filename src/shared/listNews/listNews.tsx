@@ -23,7 +23,7 @@ export interface NewsInterface {
 export function News(setNews: any, setError: any) {
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://the-news-api-jpvv.onrender.com/news/list");
+      const response = await axios.get("http://localhost:3000/news/list");
       setNews(response.data);
       setError("");
     } catch (err) {
@@ -59,7 +59,7 @@ function ListNews({ searchNews }: any) {
         {error && <ErrorText style={{ marginTop: "40px" }}>{error}</ErrorText>}
         <ContainerNews>
           {filterNews.map((item) => (
-            <LinkNews href={`https://the-news-api-jpvv.onrender.com/news/${item._id}`}>
+            <LinkNews href={`http://localhost:3000/news/${item._id}`}>
               <NewsContainer>
                 <NewsImage src={item.src} />
                 <DateNews>
@@ -90,7 +90,7 @@ function ListNews({ searchNews }: any) {
     <>
       {error && <ErrorText style={{ marginTop: "40px" }}>{error}</ErrorText>}
       {filterNews.map((item) => (
-        <LinkNews href={`https://the-news-api-jpvv.onrender.com/news/${item._id}`}>
+        <LinkNews href={`http://localhost:3000/news/${item._id}`}>
           <NewsContainer>
             <NewsImage src={item.src} />
             <DateNews>
