@@ -49,7 +49,33 @@ export function useUsername() {
         setUsername(null);
       }
     };
-    fetchUsername()
+    fetchUsername();
   }, []);
   return userName;
+}
+
+export function useUserId() {
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const fetchUserId = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/users/me", {
+          withCredentials: true,
+        });
+
+        if (response.data.username) {
+          return setUserId(response.data.id);
+        }
+      } catch (err) {
+        if (axios.isAxiosError(err)) {
+          setUserId(null);
+          return;
+        }
+        setUserId(null);
+      }
+    };
+    fetchUserId();
+  }, []);
+  return userId;
 }

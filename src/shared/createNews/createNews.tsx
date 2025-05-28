@@ -14,7 +14,9 @@ function CreateNews() {
     content: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -24,25 +26,29 @@ function CreateNews() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const formDataToSend = new FormData();
-    formDataToSend.append('title', formData.title);
-    formDataToSend.append('content', formData.content);
-    
+    formDataToSend.append("title", formData.title);
+    formDataToSend.append("content", formData.content);
+
     if (fileInputRef.current?.files?.[0]) {
-      formDataToSend.append('file', fileInputRef.current.files[0]);
+      formDataToSend.append("file", fileInputRef.current.files[0]);
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/news/create", formDataToSend, {
-        headers: {
-          'Content-Type': 'multipart/form-data' 
+      const response = await axios.post(
+        "http://localhost:3000/news/create",
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
-      });
+      );
 
       setCreated(response.data.message);
       setError("");
-      
+
       setFormData({ title: "", content: "" });
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
@@ -78,7 +84,7 @@ function CreateNews() {
       key={index}
       placeholder={input.placeholder}
       name={input.name}
-      value={input.name === 'title' ? formData.title : formData.content}
+      value={input.name === "title" ? formData.title : formData.content}
       style={input.textContent ? { height: "200px" } : {}}
       onChange={handleChange}
     />
@@ -87,17 +93,16 @@ function CreateNews() {
   return (
     <>
       <FormNews onSubmit={handleSubmit}>
-        <h2 style={{textAlign: 'center', fontSize: '2rem', margin: '20px 0'}}>Create News</h2>
+        <h2 style={{ textAlign: "center", fontSize: "2rem", margin: "20px 0" }}>
+          Create News
+        </h2>
         {listInputs}
-        <input 
-          name="file" 
-          type="file" 
-          ref={fileInputRef}
-          accept="image/*"
-        />
+        <input name="file" type="file" ref={fileInputRef} accept="image/*" />
         {error && <ErrorText>{error}</ErrorText>}
         {created && <CreatedText>{created}</CreatedText>}
-        <Button type="submit" style={{margin: '20px 0'}}>Create News</Button>
+        <Button type="submit" style={{ margin: "20px 0" }}>
+          Create News
+        </Button>
       </FormNews>
     </>
   );

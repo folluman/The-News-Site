@@ -33,7 +33,7 @@ function HomeScreen() {
             {/* Container Header */}
             <ContainerHeader>
               <MenuProfile />
-              <Logo src={LogoImg} />
+              <a href="/"><Logo src={LogoImg} /></a>
               <InputSearch
                 searchNews={searchNews}
                 setSearchNews={setSearchNews}

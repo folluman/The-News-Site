@@ -7,7 +7,7 @@ const LoginScreen = () => {
     <Body>
       <Login>
         <div>
-          <Logo src={LogoImg} />
+          <a href="/"><Logo src={LogoImg} /></a>
         </div>
         <Input/>
       </Login>
