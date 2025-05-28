@@ -17,7 +17,11 @@ function MenuProfile() {
   const handleLogout = async () => {
     try {
       const response = await axios.post(
+<<<<<<< HEAD
         "https://the-news-api-jpvv.onrender.com/users/logout",
+=======
+        "http://localhost:3000/users/logout",
+>>>>>>> 3db4a1f (feat: add useUserId in authetication)
         {},
         { withCredentials: true }
       );
