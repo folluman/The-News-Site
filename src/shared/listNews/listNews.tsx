@@ -59,7 +59,7 @@ function ListNews({ searchNews }: any) {
         {error && <ErrorText style={{ marginTop: "40px" }}>{error}</ErrorText>}
         <ContainerNews>
           {filterNews.map((item) => (
-            <LinkNews href={`http://localhost:3000/news/${item._id}`}>
+            <LinkNews href={`http://localhost:5173/news/${item._id}`}>
               <NewsContainer>
                 <NewsImage src={item.src} />
                 <DateNews>
@@ -90,7 +90,7 @@ function ListNews({ searchNews }: any) {
     <>
       {error && <ErrorText style={{ marginTop: "40px" }}>{error}</ErrorText>}
       {filterNews.map((item) => (
-        <LinkNews href={`http://localhost:3000/news/${item._id}`}>
+        <LinkNews href={`http://localhost:5173/news/${item._id}`}>
           <NewsContainer>
             <NewsImage src={item.src} />
             <DateNews>
