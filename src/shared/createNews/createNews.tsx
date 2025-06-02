@@ -37,7 +37,7 @@ function CreateNews() {
 
     try {
       const response = await axios.post(
-        "https://the-news-api-jpvv.onrender.com/news/create",
+        "https://news-api-sigma-six.vercel.app/news/create",
         formDataToSend,
         {
           headers: {

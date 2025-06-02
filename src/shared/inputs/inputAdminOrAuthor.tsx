@@ -48,7 +48,7 @@ function CreateAdminOrAuthor() {
     }
 
     try {
-      const response = await axios.post("https://the-news-api-jpvv.onrender.com/users/signup", {
+      const response = await axios.post("https://news-api-sigma-six.vercel.app/users/signup", {
         username: formData.username,
         password: formData.password,
         email: formData.email,

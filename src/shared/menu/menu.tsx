@@ -17,7 +17,7 @@ function MenuProfile() {
   const handleLogout = async () => {
     try {
       const response = await axios.post(
-        "https://the-news-api-jpvv.onrender.com/users/logout",
+        "https://news-api-sigma-six.vercel.app/users/logout",
         {},
         { withCredentials: true }
       );

@@ -42,7 +42,7 @@ function CreateCategory() {
 
     try {
       const response = await axios.post(
-        "https://the-news-api-jpvv.onrender.com/category/create",
+        "https://news-api-sigma-six.vercel.app/category/create",
         {
           name: formData.name,
         }

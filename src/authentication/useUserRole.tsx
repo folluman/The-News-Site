@@ -7,7 +7,7 @@ export function useUserRole() {
   useEffect(() => {
     const fetchUserRole = async () => {
       try {
-        const response = await axios.get("https://the-news-api-jpvv.onrender.com/users/me", {
+        const response = await axios.get("https://news-api-sigma-six.vercel.app/users/me", {
           withCredentials: true,
         });
 
@@ -34,7 +34,7 @@ export function useUsername() {
   useEffect(() => {
     const fetchUsername = async () => {
       try {
-        const response = await axios.get("https://the-news-api-jpvv.onrender.com/users/me", {
+        const response = await axios.get("https://news-api-sigma-six.vercel.app/users/me", {
           withCredentials: true,
         });
 
@@ -60,7 +60,7 @@ export function useUserId() {
   useEffect(() => {
     const fetchUserId = async () => {
       try {
-        const response = await axios.get("https://the-news-api-jpvv.onrender.com/users/me", {
+        const response = await axios.get("https://news-api-sigma-six.vercel.app/users/me", {
           withCredentials: true,
         });
 

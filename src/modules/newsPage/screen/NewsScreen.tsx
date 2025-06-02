@@ -35,7 +35,7 @@ function NewsPage() {
           return;
         }
 
-        const response = await axios.get(`https://the-news-api-jpvv.onrender.com/news/${id}`);
+        const response = await axios.get(`https://news-api-sigma-six.vercel.app/news/${id}`);
         setNews(response.data);
       } catch (err) {
         if (axios.isAxiosError(err)) {

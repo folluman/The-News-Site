@@ -108,17 +108,27 @@ function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
 
     try {
       const response = await axios.post(
-        "https://the-news-api-jpvv.onrender.com/users/login",
+        "https://news-api-sigma-six.vercel.app/users/login",
         {
           email: formData.email,
           password: formData.password,
         },
         {
           withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            'Accept': "application/json",
+          },
         }
       );
-      if(response){
-        return navigate("/");
+      console.log("Resposta do login:", {
+        status: response.status,
+        data: response.data,
+        headers: response.headers, // 👈 Verifique 'set-cookie'
+      });
+
+      if (response.status === 200) {
+       return navigate("/", { replace: true });
       }
     } catch (err) {
       if (axios.isAxiosError(err)) {
@@ -209,12 +219,15 @@ function SignUpScreen() {
     }
 
     try {
-      const response = await axios.post("https://the-news-api-jpvv.onrender.com/users/signup", {
-        username: formData.username,
-        password: formData.password,
-        email: formData.email,
-        phone: formData.phone,
-      });
+      const response = await axios.post(
+        "https://news-api-sigma-six.vercel.app/users/signup",
+        {
+          username: formData.username,
+          password: formData.password,
+          email: formData.email,
+          phone: formData.phone,
+        }
+      );
 
       setUserCreated(response.data.message);
       setError("");
