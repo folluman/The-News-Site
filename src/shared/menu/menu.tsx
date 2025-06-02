@@ -1,7 +1,7 @@
 import { Container, ProfileIcon, Login } from "./menu.style";
 import IconProfile from "../../assets/profileIcon.svg";
-import { useUsername, useUserId } from "../../authentication/useUserRole";
-import React, { useState } from "react";
+import { useUsername } from "../../authentication/useUserRole";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -21,6 +21,7 @@ function MenuProfile() {
         {},
         { withCredentials: true }
       );
+      console.log(response.data);
       navigate("/");
       window.location.reload();
     } catch {
