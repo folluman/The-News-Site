@@ -117,7 +117,7 @@ function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
           withCredentials: true,
           headers: {
             "Content-Type": "application/json",
-            'Accept': "application/json",
+            Accept: "application/json",
           },
         }
       );
@@ -128,7 +128,7 @@ function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
       });
 
       if (response.status === 200) {
-       return navigate("/", { replace: true });
+        return navigate("/", { replace: true });
       }
     } catch (err) {
       if (axios.isAxiosError(err)) {
