@@ -121,18 +121,13 @@ function LoginScreen({ setSignUpOrLogin }: LoginScreenProps) {
           },
         }
       );
-      console.log("Resposta do login:", {
-        status: response.status,
-        data: response.data,
-        headers: response.headers, // 👈 Verifique 'set-cookie'
-      });
 
       if (response.status === 200) {
         return navigate("/", { replace: true });
       }
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        return setError(err.response?.data?.message);
+        return setError(err.response?.data?.error);
       }
       setError("An unexpected error occurred.");
     } finally {

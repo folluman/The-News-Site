@@ -54,15 +54,11 @@ function CreateNews() {
         fileInputRef.current.value = "";
       }
     } catch (error) {
+      let errorMessage = "An error occurred. Please try again";
       if (axios.isAxiosError(error)) {
-        const apiError = error.response?.data;
-        if (apiError) {
-          setError(apiError.error || "An error occurred");
-          setCreated("");
-          return;
-        }
+        errorMessage = error.response?.data?.error || error.message;
       }
-      setError("An error occurred. Please try again");
+      setError(errorMessage);
       setCreated("");
     }
   };
